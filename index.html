@@ -4,13 +4,32 @@
 <script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-	<a-scene embedded arjs='sourceType: webcam;'>
+	<a-scene cursor='rayOrigin: mouse; fuse: true; fuseTimeout: 0;'
+			 raycaster="objects: [data-clickable]"
+			 embedded 
+			 arjs="sourceType: webcam; debugUIEnabled: false;">
 
-        <a-marker-camera preset='custom' type='pattern' url='pattern-RIOMARE.patt'>
-			<a-entity geometry="primitive:box;" material="shader:gif;src:url(9acf6d30d14ee7db0075d9cdfe8cb4eb.gif);opacity:1"></a-entity>
-        </a-marker-camera>
+		<a-assets>
+			<a-asset-item id="tree-obj" src="1a040e7d-64dd-419b-ab91-b605af9879b1.obj"></a-asset-item>
+			<a-asset-item id="tree-mtl" src="1a040e7d-64dd-419b-ab91-b605af9879b1.mtl"></a-asset-item>
+			<img id="button" src="button.png">
+			<img id="chart_a" src="Metodi di pesca.png">
+		</a-assets>
+		
+		<a-marker markerhandler emitevents="true" id="animated-marker" preset="custom" type="pattern" url="pattern-RIOMARE.patt">
+			<a-entity rotation="-20 0 0" position="-0.35 1 0" scale="0.0025 0.0025 0.0025" obj-model="obj: #tree-obj; mtl: #tree-mtl"></a-entity>
+			<a-image height="0.5" position="0 .5 0" src="#button"></a-image>
+			<a-image width="2" height="2" position="1.5 1.5 0" src="#chart_a"></a-image>
+			<a-entity position="0 2 0" geometry="primitive:plane;width:1;" material="shader:gif;src:url(ezgif-6-f973006f8e45.gif);"></a-entity>
+			<a-entity position="-1 1.5 0" geometry="primitive:plane;width:1;" material="shader:gif;src:url(oie_25223036miWRLQ26.gif);alphaTest:1;"></a-entity>
+		</a-marker>
 
 		<a-entity camera></a-entity>
+
 	</a-scene>
 </body>
+
+<script>
+</script>
+
 </html>
